@@ -1,0 +1,33 @@
+{
+  "version": "cascade-v1",
+  "threshold": 0.95,
+  "accept_unmatched_from_laya": false,
+  "bedrock_model_id": "global.anthropic.claude-sonnet-4-6",
+  "region": "us-east-2",
+  "temperature": 0,
+  "max_output_tokens": 384,
+  "bedrock_taxonomy_scope": "Full destination taxonomy, independently of the Laya shortlist.",
+  "datasets": {
+    "regression": "evals/cases.jsonl",
+    "fresh": "evals/cascade/fresh-cases.jsonl"
+  },
+  "success_criteria": {
+    "minimum_exact_decision_accuracy": 0.95,
+    "maximum_wrong_laya_accepted": 0,
+    "maximum_execution_errors": 0,
+    "minimum_bedrock_call_reduction": 0.1
+  },
+  "methodology": [
+    "Freeze this protocol, prompts and authored labels before the first benchmark prediction.",
+    "The 0.95 threshold was selected after observing the existing regression set. Regression results are exploratory, not independent validation.",
+    "Fresh products use new names and wording but familiar category concepts and the same fictional taxonomies. They were authored after prior errors were known; this is a prospective diagnostic set, not an independent commercial holdout.",
+    "Run live Laya and Bedrock once for every product/destination, with no accuracy-driven retries or prompt edits. Never send expected labels or prior predictions to Bedrock.",
+    "Derive the cascade from paired recorded calls, accepting valid non-unmatched Laya choices at or above the fixed threshold. All other cases use the corresponding Bedrock result without a second paid call.",
+    "Bedrock can return mapped, no_match or insufficient_information. Non-mapped decisions normalize to unmatched for existing exact-label scoring, but remain unresolved products rather than completed mappings.",
+    "Record successful token usage, API wall time, local Laya wall/model time, raw outputs and hashes. Errors remain in the denominator.",
+    "Cascade latency and token savings are calculated from the paired calls; this does not benchmark a deployed cascade or concurrent throughput.",
+    "Report datasets separately. Multiple destination decisions share products and taxonomies and are not statistically independent.",
+    "Cost estimates cover Standard ON DEMAND Bedrock inference only, excluding Laya hardware, idle capacity, networking, human review, taxes and any failed calls with unknown usage.",
+    "Keep all failures visible and do not relax existing Laya quality gates."
+  ]
+}

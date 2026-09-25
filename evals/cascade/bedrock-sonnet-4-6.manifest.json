@@ -1,0 +1,55 @@
+{
+  "created_at": "2026-09-25T11:34:05.904694+00:00",
+  "protocol": {
+    "version": "cascade-v1",
+    "threshold": 0.95,
+    "accept_unmatched_from_laya": false,
+    "bedrock_model_id": "global.anthropic.claude-sonnet-4-6",
+    "region": "us-east-2",
+    "temperature": 0,
+    "max_output_tokens": 384,
+    "bedrock_taxonomy_scope": "Full destination taxonomy, independently of the Laya shortlist.",
+    "datasets": {
+      "regression": "evals/cases.jsonl",
+      "fresh": "evals/cascade/fresh-cases.jsonl"
+    },
+    "success_criteria": {
+      "minimum_exact_decision_accuracy": 0.95,
+      "maximum_wrong_laya_accepted": 0,
+      "maximum_execution_errors": 0,
+      "minimum_bedrock_call_reduction": 0.1
+    },
+    "methodology": [
+      "Freeze this protocol, prompts and authored labels before the first benchmark prediction.",
+      "The 0.95 threshold was selected after observing the existing regression set. Regression results are exploratory, not independent validation.",
+      "Fresh products use new names and wording but familiar category concepts and the same fictional taxonomies. They were authored after prior errors were known; this is a prospective diagnostic set, not an independent commercial holdout.",
+      "Run live Laya and Bedrock once for every product/destination, with no accuracy-driven retries or prompt edits. Never send expected labels or prior predictions to Bedrock.",
+      "Derive the cascade from paired recorded calls, accepting valid non-unmatched Laya choices at or above the fixed threshold. All other cases use the corresponding Bedrock result without a second paid call.",
+      "Bedrock can return mapped, no_match or insufficient_information. Non-mapped decisions normalize to unmatched for existing exact-label scoring, but remain unresolved products rather than completed mappings.",
+      "Record successful token usage, API wall time, local Laya wall/model time, raw outputs and hashes. Errors remain in the denominator.",
+      "Cascade latency and token savings are calculated from the paired calls; this does not benchmark a deployed cascade or concurrent throughput.",
+      "Report datasets separately. Multiple destination decisions share products and taxonomies and are not statistically independent.",
+      "Cost estimates cover Standard ON DEMAND Bedrock inference only, excluding Laya hardware, idle capacity, networking, human review, taxes and any failed calls with unknown usage.",
+      "Keep all failures visible and do not relax existing Laya quality gates."
+    ]
+  },
+  "protocol_hash": "9ba4837da53111bc2d480b44712de0e980271e5ea1c5fdb1d384137c9e79f272",
+  "datasets_hash": "d37541c0fe07f93340cb7664404c711b32d4fffb2d3a72d653f932955ab0bd62",
+  "taxonomy_hash": "ba427fffddade6fae38062119a916bb45ac05a7e63203fa42f7a5f62dc4e05b7",
+  "prompt_hash": "ca756a3c71332df70c14865edf5c3edc951cce8d8125ea3df61daa889da3634d",
+  "boto3_version": "1.43.102",
+  "botocore_version": "1.43.102",
+  "authentication": "Named AWS profile (profile name and account identity not recorded)",
+  "laya_metadata": {
+    "status": "ready",
+    "model_repo": "convaiinnovations/laya",
+    "model_revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+    "laya_version": "0.3.20",
+    "torch_version": "2.12.1+cu130",
+    "transformers_version": "5.12.1",
+    "device": "cuda",
+    "hardware": "Tesla T4",
+    "max_len": 512,
+    "head_max_len": 384
+  }
+}

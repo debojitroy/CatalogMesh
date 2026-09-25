@@ -13,6 +13,7 @@ dependencies = ["fastapi>=0.115,<1", "uvicorn>=0.34,<1", "httpx>=0.28,<1", "pyth
 [project.optional-dependencies]
 dev = ["pytest>=8,<10", "pytest-asyncio>=0.25,<2", "ruff>=0.11"]
 inference = ["laya==0.3.20", "torch>=2.6,<3", "transformers>=4.48,<6"]
+bedrock = ["boto3>=1.42,<2"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["server/catalogmesh"]
