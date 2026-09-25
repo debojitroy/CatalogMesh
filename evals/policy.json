@@ -1,0 +1,8 @@
+{
+  "version": "1",
+  "description": "Pilot quality bars defined before the first evaluation. Authored English cases; not a production guarantee.",
+  "minimum_accuracy": 0.8,
+  "minimum_shortlist_recall": 0.95,
+  "minimum_lift_over_lexical": 0.05,
+  "minimum_unmatched_recall": 0.5
+}
