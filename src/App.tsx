@@ -464,7 +464,7 @@ function Evaluation({ report }: { report: Report | null }) {
           <h2>Failure explorer</h2>
           <span>{failures.length} incorrect decisions retained</span>
         </div>
-        <div className="table-scroll">
+        <div className="table-scroll" role="region" aria-label="Evaluation failures" tabIndex={0}>
           <table className="ledger">
             <thead>
               <tr>
@@ -626,52 +626,47 @@ export default function App() {
 
   return (
     <div className="shell">
-      <aside className="sidebar">
-        <a className="brand" href="/" aria-label="CatalogMesh home">
-          <Box size={29} strokeWidth={1.7} />
-          <span>
-            catalog<span>mesh</span>
-            <i />
+      <a className="skip-link" href="#catalog-board">
+        Skip to dispatch board
+      </a>
+      <header className="dispatch-header">
+        <a className="dispatch-brand" href="/" aria-label="CatalogMesh home">
+          <span className="dispatch-mark" aria-hidden="true">
+            ↗
           </span>
+          CATALOG<span>MESH</span>
         </a>
-        <div className="workspace">
-          <span className="workspace-avatar">M</span>
-          <div>
-            Meridian Reseller<small>DEMO WORKSPACE</small>
-          </div>
-          <ChevronDown size={14} />
+        <div className="dispatch-office">
+          MERIDIAN RESELLER<span>SUPPLIER → MARKETPLACE</span>
         </div>
-        <span className="nav-label">WORKSPACE</span>
-        <nav>
-          {nav.map(({ id, name, icon: Icon }) => (
-            <button key={id} className={view === id ? 'active' : ''} onClick={() => setView(id)}>
-              <Icon size={18} />
+        <a
+          className="dispatch-source"
+          href="https://github.com/debojitroy/CatalogMesh"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Source & documentation <ArrowUpRight size={16} />
+        </a>
+      </header>
+      <div className="dispatch-navigation">
+        <nav aria-label="Main navigation">
+          {nav.map(({ id, name }, index) => (
+            <button
+              key={id}
+              className={view === id ? 'active' : ''}
+              aria-current={view === id ? 'page' : undefined}
+              onClick={() => setView(id)}
+            >
+              <span className="dispatch-tab-number" aria-hidden="true">
+                {String(index + 1).padStart(2, '0')}
+              </span>
               {name}
               {id === 'evaluation' && <span className="nav-dot" />}
             </button>
           ))}
         </nav>
-        <div className="sidebar-note">
-          <Workflow size={25} strokeWidth={1.4} />
-          <h3>
-            Many to many.
-            <br />
-            One workspace.
-          </h3>
-          <p>Connect any imported supplier to any imported marketplace taxonomy.</p>
-          <button onClick={() => setImporting('marketplace')}>
-            Add a destination <ArrowUpRight size={14} />
-          </button>
-        </div>
-        <div className="sidebar-bottom">
-          <a href="https://github.com/debojitroy/CatalogMesh" target="_blank" rel="noreferrer">
-            <BookOpen size={16} /> Project & documentation <ArrowUpRight size={13} />
-          </a>
-          <div>
-            <span className="status-dot" /> OPEN SOURCE <span>v0.1.0</span>
-          </div>
-        </div>
-      </aside>
+        <span className="dispatch-edition">CATALOG OPERATIONS / 001</span>
+      </div>
       <div className="main-shell">
         <header className="topbar">
           <div>
@@ -685,7 +680,7 @@ export default function App() {
             {mode === 'recorded' ? 'Recorded demo' : 'Live inference'}
           </div>
         </header>
-        <main>
+        <main id="catalog-board">
           {error && (
             <div className="error global-error" role="alert">
               <span>{error}</span>
@@ -704,50 +699,41 @@ export default function App() {
                 <>
                   <div className="page-heading">
                     <div>
-                      <span className="eyebrow">
-                        <span /> THE CATALOG CONNECTION LAYER
-                      </span>
+                      <span className="eyebrow">ROUTING MANIFEST / ALL CONNECTIONS</span>
                       <h1>
-                        Every catalog.
-                        <br />
-                        <em>Every destination.</em>
+                        Dispatch board<span className="dispatch-period">.</span>
                       </h1>
                       <p>
-                        Turn supplier language into marketplace categories.
+                        Different catalogs. Different categories.
                         <br />
-                        Laya makes the semantic match. You stay in control.
+                        Choose a connection to see where each product belongs.
                       </p>
                     </div>
-                    <div className="hero-network" aria-hidden="true">
-                      <div className="network-column">
+                    <aside className="route-slip" aria-label="Selected connection">
+                      <div className="slip-header">
+                        <span>CONNECTION TICKET</span>
+                        <span>LAYA / {mode.toUpperCase()}</span>
+                      </div>
+                      <div className="slip-route">
                         <span>
-                          <Package size={18} />
+                          <small>FROM</small>
+                          {supplier?.name ?? 'Select supplier'}
                         </span>
+                        <ArrowRight size={25} />
                         <span>
-                          <Boxes size={18} />
-                        </span>
-                        <span>
-                          <Package size={18} />
+                          <small>TO</small>
+                          {markets.find((m) => m.id === activeMarket)?.name ?? 'Select destination'}
                         </span>
                       </div>
-                      <div className="network-lines" />
-                      <div className="network-core">
-                        <Box size={34} />
-                        <small>LAYA</small>
-                      </div>
-                      <div className="network-lines right" />
-                      <div className="network-column">
+                      <div className="slip-footer">
+                        <span className="barcode" aria-hidden="true" />
                         <span>
-                          <Globe2 size={18} />
-                        </span>
-                        <span>
-                          <Globe2 size={18} />
-                        </span>
-                        <span>
-                          <Globe2 size={18} />
+                          {supplier?.products.length ?? 0} PRODUCTS
+                          <br />
+                          REVIEW BEFORE EXPORT
                         </span>
                       </div>
-                    </div>
+                    </aside>
                   </div>
                   <div className="metrics">
                     <Metric
@@ -774,7 +760,7 @@ export default function App() {
                   <section className="panel connection-panel">
                     <div className="panel-heading">
                       <div>
-                        <h2>The connection matrix</h2>
+                        <h2>Origin / destination</h2>
                         <p>Choose a route. Inspect what each marketplace receives.</p>
                       </div>
                       <button className="text-button" onClick={() => setImporting('marketplace')}>
@@ -804,12 +790,12 @@ export default function App() {
                           </tr>
                         </thead>
                         <tbody>
-                          {state.suppliers.map((s) => (
+                          {state.suppliers.map((s, supplierIndex) => (
                             <tr key={s.id}>
                               <th>
                                 <button onClick={() => chooseSupplier(s)}>
-                                  <span className={`supplier-avatar ${s.id}`}>
-                                    {initials(s.name)}
+                                  <span className="supplier-index" aria-hidden="true">
+                                    {String(supplierIndex + 1).padStart(2, '0')}
                                   </span>
                                   <span>
                                     {s.name}
@@ -831,6 +817,7 @@ export default function App() {
                                   <td key={m.id}>
                                     <button
                                       className={`matrix-cell ${supplier?.id === s.id && activeMarket === m.id ? 'selected' : ''}`}
+                                      aria-pressed={supplier?.id === s.id && activeMarket === m.id}
                                       onClick={() => {
                                         chooseSupplier(s)
                                         setActiveMarket(m.id)
@@ -1073,7 +1060,12 @@ export default function App() {
                     <span>{filtered.length} current decisions</span>
                   </div>
                   <section className="panel">
-                    <div className="table-scroll">
+                    <div
+                      className="table-scroll"
+                      role="region"
+                      aria-label="Mapping ledger table"
+                      tabIndex={0}
+                    >
                       <table className="ledger">
                         <thead>
                           <tr>

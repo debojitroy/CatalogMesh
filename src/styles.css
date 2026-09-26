@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
-
 :root {
   font-family: 'DM Sans', system-ui, sans-serif;
   color: #20332d;
@@ -83,80 +81,6 @@ small {
 .shell {
   min-height: 100vh;
 }
-.sidebar {
-  position: fixed;
-  width: 226px;
-  inset: 0 auto 0 0;
-  background: #133d33;
-  color: #dce4da;
-  padding: 32px 18px 0;
-  display: flex;
-  flex-direction: column;
-  z-index: 5;
-}
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 0 6px;
-  font-weight: 700;
-  font-size: 23px;
-  letter-spacing: -1.2px;
-  color: #fbfcf4;
-}
-.brand > svg {
-  color: #dbe9ad;
-}
-.brand > span > span {
-  font-weight: 400;
-}
-.brand i {
-  display: inline-block;
-  width: 5px;
-  height: 5px;
-  margin-left: 3px;
-  border-radius: 50%;
-  background: #dbe9ad;
-}
-.workspace {
-  margin: 38px 0 34px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 11px 7px;
-  border-top: 1px solid #3b5a4e;
-  border-bottom: 1px solid #3b5a4e;
-  font-size: 11px;
-}
-.workspace-avatar {
-  background: #375a49;
-  width: 29px;
-  height: 29px;
-  border-radius: 7px;
-  display: grid;
-  place-items: center;
-  font-family: Georgia, serif;
-  color: #e2e8b5;
-  font-size: 17px;
-}
-.workspace small {
-  display: block;
-  font: 8px var(--mono);
-  letter-spacing: 1px;
-  color: #adbdac;
-  margin-top: 5px;
-}
-.workspace > svg {
-  margin-left: auto;
-  color: #a8bcae;
-}
-.nav-label {
-  font: 9px var(--mono);
-  letter-spacing: 1.7px;
-  color: #a5b8a9;
-  padding: 0 13px;
-  margin-bottom: 13px;
-}
 nav {
   display: grid;
   gap: 5px;
@@ -184,63 +108,6 @@ nav button.active {
   height: 5px;
   border-radius: 50%;
   background: currentColor;
-}
-.sidebar-note {
-  margin-top: auto;
-  margin-bottom: 25px;
-  border: 1px solid #486250;
-  padding: 17px 14px;
-  border-radius: 9px;
-  background: linear-gradient(125deg, #224d3e, #183f34);
-}
-.sidebar-note > svg {
-  color: #d1df9e;
-}
-.sidebar-note h3 {
-  font:
-    21px/1.17 Georgia,
-    serif;
-  color: #ebf0d7;
-  margin-top: 14px;
-}
-.sidebar-note p {
-  font-size: 10px;
-  line-height: 1.7;
-  color: #bdcdbb;
-  margin: 12px 0 17px;
-}
-.sidebar-note button {
-  background: none;
-  border: 0;
-  padding: 0;
-  font-size: 10px;
-  color: #e0e8be;
-  justify-content: space-between;
-  width: 100%;
-}
-.sidebar-bottom > a {
-  font-size: 10px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #c5d1c1;
-  padding-bottom: 22px;
-}
-.sidebar-bottom > a svg:last-child {
-  margin-left: auto;
-}
-.sidebar-bottom > div {
-  padding: 18px 0;
-  border-top: 1px solid #3b5a4e;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font: 8px var(--mono);
-  letter-spacing: 1.1px;
-  color: #bdcbbb;
-}
-.sidebar-bottom > div > span:last-child {
-  margin-left: auto;
 }
 .main-shell {
   margin-left: 226px;
@@ -335,70 +202,6 @@ h1 em {
   color: var(--muted);
   line-height: 1.8;
   margin-top: 16px;
-}
-.hero-network {
-  width: 350px;
-  display: flex;
-  align-items: center;
-  padding: 20px 12px;
-  flex-shrink: 0;
-  background-image: radial-gradient(#d5dbcc 0.8px, transparent 0.8px);
-  background-size: 13px 13px;
-  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
-}
-.network-column {
-  display: grid;
-  gap: 18px;
-}
-.network-column > span {
-  display: grid;
-  place-items: center;
-  width: 41px;
-  height: 41px;
-  background: #fbfcf6;
-  border: 1px solid #d0d8c8;
-  border-radius: 9px;
-  color: #697a60;
-}
-.network-core {
-  width: 82px;
-  height: 94px;
-  border: 1px solid #bac89c;
-  border-radius: 17px;
-  box-shadow: 0 0 0 8px #dce5cd66;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #325a3e;
-  background: #e5edcf;
-  gap: 7px;
-  flex-shrink: 0;
-}
-.network-core small {
-  font: 8px var(--mono);
-  letter-spacing: 3px;
-}
-.network-lines {
-  height: 113px;
-  flex: 1;
-  border-top: 1px solid #9bad87;
-  border-bottom: 1px solid #9bad87;
-  border-right: 1px solid #9bad87;
-  border-radius: 0 20px 20px 0;
-  position: relative;
-}
-.network-lines:after {
-  position: absolute;
-  content: '';
-  height: 1px;
-  left: 0;
-  right: 0;
-  top: 50%;
-  background: #9bad87;
-}
-.network-lines.right {
-  transform: rotate(180deg);
 }
 .metrics {
   display: grid;
@@ -1555,23 +1358,11 @@ pre {
     padding-top: 53px;
     padding-bottom: 40px;
   }
-  .hero-network {
-    width: 410px;
-  }
   .fanout-body {
     grid-template-columns: 1fr 150px 1.45fr;
   }
 }
 @media (max-width: 1200px) {
-  .sidebar {
-    width: 198px;
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-  .brand {
-    font-size: 21px;
-    gap: 5px;
-  }
   .main-shell {
     margin-left: 198px;
   }
@@ -1580,9 +1371,6 @@ pre {
   }
   .topbar {
     padding: 0 25px;
-  }
-  .hero-network {
-    width: 285px;
   }
   .matrix thead th:first-child {
     width: 180px;
@@ -1622,48 +1410,12 @@ pre {
   }
 }
 @media (max-width: 950px) {
-  .sidebar {
-    width: 170px;
-  }
   .main-shell {
     margin-left: 170px;
-  }
-  .brand {
-    font-size: 18px;
-  }
-  .brand > svg {
-    width: 25px;
-  }
-  .workspace {
-    font-size: 9px;
-    gap: 7px;
-  }
-  .workspace-avatar {
-    width: 24px;
-  }
-  .workspace small {
-    font-size: 7px;
-  }
-  .sidebar-note {
-    padding: 13px 10px;
-  }
-  .sidebar-bottom > a {
-    font-size: 8px;
   }
   nav button {
     font-size: 11px;
     padding: 12px 9px;
-  }
-  .hero-network {
-    width: 220px;
-  }
-  .network-core {
-    width: 62px;
-    height: 80px;
-  }
-  .network-column > span {
-    width: 31px;
-    height: 35px;
   }
   h1 {
     font-size: 45px;
@@ -1708,26 +1460,6 @@ pre {
   }
 }
 @media (max-width: 720px) {
-  .sidebar {
-    position: static;
-    width: 100%;
-    height: auto;
-    padding: 17px 18px 0;
-    display: block;
-  }
-  .brand {
-    font-size: 23px;
-    padding: 0;
-  }
-  .brand > svg {
-    width: 27px;
-  }
-  .workspace,
-  .nav-label,
-  .sidebar-note,
-  .sidebar-bottom {
-    display: none;
-  }
   nav {
     display: flex;
     gap: 4px;
@@ -1777,9 +1509,6 @@ pre {
   .eyebrow {
     font-size: 8px;
     letter-spacing: 1.1px;
-  }
-  .hero-network {
-    display: none;
   }
   h1 {
     font-size: 44px;

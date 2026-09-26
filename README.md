@@ -13,6 +13,8 @@ destination marketplace's category system.
 
 ![Supplier-by-marketplace matrix and product destination fan-out](docs/connections-desktop.png)
 
+The interface is a dispatch board: a printed origin/destination grid, numbered suppliers, and a connection ticket that updates with the selected route. The layout adapts to mobile and serves its fonts locally.
+
 ## What works today
 
 - Connect independent supplier catalogs and marketplace taxonomies through JSON imports.
