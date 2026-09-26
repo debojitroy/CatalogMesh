@@ -13,6 +13,8 @@ destination marketplace's category system.
 
 ![Supplier-by-marketplace matrix and product destination fan-out](docs/connections-desktop.png)
 
+The interface is a dispatch board: a printed origin/destination grid, numbered suppliers, and a connection ticket that updates with the selected route. The layout adapts to mobile and serves its fonts locally.
+
 ## What works today
 
 - Connect independent supplier catalogs and marketplace taxonomies through JSON imports.
@@ -32,6 +34,19 @@ granularity and organization. They are not integrations with commercial marketpl
 decisions**, versus **62.5% for lexical retrieval alone**. The model fails the declared
 80% accuracy and 50% unmatched-recall gates. It must not be used to publish unattended
 catalog mappings. See the failure explorer and [full evaluation](evals/README.md).
+
+### Laya → Bedrock experiment
+
+The repository also includes a reproducible comparison of **Laya alone, Claude Sonnet 4.6
+on Amazon Bedrock, and a fixed 95% Laya-score cascade**. It tests the existing regression
+set and a separately frozen set of new authored products, records every model response,
+and measures exact decisions, wrong accepted mappings, unresolved products, latency and
+Bedrock token usage. See the [measured verdict](evals/cascade/REPORT.md) and
+[benchmark instructions](evals/cascade/README.md).
+
+This is an offline experiment. The workbench's mapping buttons still use Laya; they do
+not invoke Bedrock or automatically publish mappings. A successful `unmatched` decision
+can still require supplier information or a human workflow.
 
 ## Quickstart
 

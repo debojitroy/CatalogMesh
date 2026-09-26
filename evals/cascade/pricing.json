@@ -1,0 +1,36 @@
+{
+  "model_id": "global.anthropic.claude-sonnet-4-6",
+  "region": "us-east-2",
+  "currency": "USD",
+  "pricing_model": "STANDARD ON DEMAND, Global Cross-region Inference",
+  "unit": "1 million tokens",
+  "input_per_million": 3.0,
+  "output_per_million": 15.0,
+  "retrieved_at": "2026-09-25T11:35:49.343533+00:00",
+  "source_page": "https://aws.amazon.com/bedrock/pricing/",
+  "source_json": "https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/bedrockfoundationmodels/USD/current/bedrockfoundationmodels.json",
+  "source_hash": "bfbd7e79695168c9e592d8f6a4b15ecc8c86ed3f8cb6ff39a2a50ef9b4d62dd0",
+  "source_table": "Global Cross-region Inference / Anthropic models / Claude Sonnet 4.6; Price per 1M input tokens; Price per 1M output tokens",
+  "metered_units": {
+    "y4HVRmBnwVLc-QbdvU2n3x_K3p1HLrk6Al35zDDvLyw": {
+      "rateCode": "6CPHMZ99DN8FAZNK.4799GE89SK.6YS6EN2CT7",
+      "price": "3.0000000000",
+      "RegionlessRateCode": "y4HVRmBnwVLc-QbdvU2n3x_K3p1HLrk6Al35zDDvLyw"
+    },
+    "nRfCau6wD_BMENoXX3ua8g2QrVfHLN4z6R5-qKNnq0g": {
+      "rateCode": "QXJRSKFQH5Q8QP83.4799GE89SK.6YS6EN2CT7",
+      "price": "15.0000000000",
+      "RegionlessRateCode": "nRfCau6wD_BMENoXX3ua8g2QrVfHLN4z6R5-qKNnq0g"
+    }
+  },
+  "assumptions": [
+    "Short context, uncached input and output, no batch/flex/priority discount or premium.",
+    "Standard successful call token usage, not an AWS invoice."
+  ],
+  "exclusions": [
+    "Local Laya GPU/CPU and idle capacity",
+    "Human review",
+    "Networking, storage, taxes",
+    "Failed request charges when usage is unavailable"
+  ]
+}

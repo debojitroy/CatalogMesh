@@ -3,6 +3,13 @@ import AxeBuilder from '@axe-core/playwright'
 
 test('map all supplier-marketplace routes, inspect Laya, review and export', async ({ page }) => {
   await page.goto('/')
+  await page.locator('.matrix tbody tr').nth(2).locator('.matrix-cell').nth(2).click()
+  const ticket = page.getByRole('complementary', { name: 'Selected connection' })
+  await expect(ticket).toContainText('Ironworks Direct')
+  await expect(ticket).toContainText('Mercury Commerce')
+  await page.locator('.matrix-cell').first().click()
+  await expect(ticket).toContainText('Northline Supply')
+  await expect(ticket).toContainText('Harbor Market')
   await page.getByRole('button', { name: 'Map all connections' }).click()
   await expect(page.getByRole('button', { name: 'Map all connections' })).toBeEnabled()
   await expect(page.locator('.destination').first()).toContainText('Recorded', { ignoreCase: true })
@@ -62,13 +69,17 @@ test('evaluation exposes quality gates, failures and reproducible evidence', asy
       nodes: v.nodes.map((n) => ({ target: n.target, summary: n.failureSummary })),
     })),
   ).toEqual([])
+  await page.setViewportSize({ width: 390, height: 844 })
+  const failures = page.getByRole('region', { name: 'Evaluation failures' })
+  await failures.focus()
+  await expect(failures).toBeFocused()
 })
 
 test('mobile layout and connections accessibility', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto('/')
   await expect(
-    page.getByRole('heading', { name: 'Every catalog. Every destination.' }),
+    page.getByRole('heading', { name: 'Dispatch board.' }),
   ).toBeVisible()
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
     true,
